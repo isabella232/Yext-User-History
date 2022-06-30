@@ -1,0 +1,27 @@
+{
+  "name": "Yext Consumer History",
+  "author": {
+    "name": "Yext",
+    "email": "support@yext.com",
+    "url": "https://help.yext.com/hc/en-us?utm_source=Zendesk&utm_medium=Partner&utm_campaign=integrations&utm_content=listing&mktg=app&utm_term=text"
+  },
+  "defaultLocale": "en",
+  "private": false,
+  "location": {
+    "support": {
+      "ticket_sidebar": {
+        "url": "assets/iframe.html",
+        "flexible": true
+      }
+    }
+  },
+  "parameters": [{
+    "name": "logsApiKey",
+    "type": "text",
+    "secure": true,
+    "required": true
+  }
+],
+  "version": "1.0",
+  "frameworkVersion": "2.0"
+}
