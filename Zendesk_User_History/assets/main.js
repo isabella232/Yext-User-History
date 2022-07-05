@@ -28,53 +28,42 @@ function loadApp() {
 
                 apiKey = metadata.settings["Logs API Key"];
 
-                var body = {
-                   "fields": ["session"],
-                   "pageSize": 100,
-                   "descending": true,
-                   "filter": "visitor.id == '" + requesterEmail + "'"
-                };
-
-                var request = defineRequest(body);
-
-                client.request(request).then(function(response) {
-                    var logRecords = response["response"]["logRecords"];
-                    if (logRecords === undefined) {
-                        convertApiResponseToHtml(document, []);
-                        return;
-                      }
-                    var sessionIds = new Set();
-                    for (let i = 0; i < logRecords.length; i++) {
-                        sessionIds.add(logRecords[i]["session"]);
-                    }
-
                     body = {
                        "fields": ["visitor", "session"],
                        "pageSize": 100,
                        "descending": true,
-                       "filter": "session in " + JSON.stringify([...sessionIds])
+                       "filter": "visitor.id.containsAnyCase('" + requesterEmail + "')"
                     };
 
                     request = defineRequest(body);
 
                     client.request(request).then(function(response) {
                         logRecords = response["response"]["logRecords"];
-                        sessionIds = new Set();
+                        if (logRecords === undefined) {
+                            convertApiResponseToHtml(document, []);
+                            return;
+                          }
+                        var sessionIds = new Set();
                         var visitorIds = new Set();
                         for (let i = 0; i < logRecords.length; i++) {
                             sessionIds.add(logRecords[i]["session"]);
                             var visitorId = logRecords[i]["visitor"]["id"];
                             if (visitorId != null) {
+                                if (visitorId.includes("&")){
+                                    var visitorSplit = visitorId.split("&");
+                                    visitorIds.add(visitorSplit[0]);
+                                    visitorIds.add(visitorSplit[1]);
+                                }
                                 visitorIds.add(visitorId);
                             }
                         }
 
                         visitorIds.delete("undefined");
                         body = {
-                           "fields": ["action", "answers.experienceKey", "answers.queryId", "eventTimestamp", "entityName", "destinationUrl", "rawSearchTerm"],
-                           "pageSize": 100,
-                           "descending": true,
-                           "filter": "visitor.id in " + JSON.stringify([...visitorIds]) + " || session in " + JSON.stringify([...sessionIds])
+                            "fields": ["action", "answers.experienceKey", "answers.queryId", "eventTimestamp", "entityName", "destinationUrl", "rawSearchTerm"],
+                            "pageSize": 100,
+                            "descending": true,
+                            "filter": "visitor.id in " + JSON.stringify([...visitorIds]) + " || session in " + JSON.stringify([...sessionIds])
                         };
 
                         request = defineRequest(body);
@@ -84,7 +73,6 @@ function loadApp() {
 
                             convertApiResponseToHtml(d, history);
                         }).catch(handleErr);
-                    }).catch(handleErr);
                 }).catch(handleErr); 
             });
         }(document));
