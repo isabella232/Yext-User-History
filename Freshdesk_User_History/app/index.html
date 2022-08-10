@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://static.freshdev.io/fdk/2.0/assets/fresh_client.js"></script>
+  <script src="https://cdn.jsdelivr.net/g/jquery@2.2.4,handlebarsjs@4.0.5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="styles/main.css" rel="stylesheet">
+  <script src="scripts/app.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,width=device-width">
+</head>
+<body>
+  <div class="loading" id="loading">
+    <h1 id="loading-title">Retrieving user activity…</h1>
+    <img class="loading-icon" id="loading-icon" x="50%" src="styles/images/loading.gif">
+  </div>
+  <div class="no-data" id="no-data" style="display: none">
+    <img class="no-data-icon" id="no-data-icon" x="50%" src="styles/images/logo.png">
+    <h1 id="no-data-title">No recent activity has been captured for this requester</h1>
+  </div>
+  <div id="content" style="display: none">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingOne">
+        <h1 class="panel-title">
+          <a role="button" data-bs-toggle="collapse" data-bs-parent="#accordion" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="padding-bottom: 10px">
+            <b>User Activity Summary</b>
+          </a>
+        </h1>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          <div class="d-flex">
+          <img class="mr-auto" x="50%" y="50%" src="styles/images/gray/recent_searches_gray.svg" style="padding-left: 5px">
+            <h5 class="searches mr-auto">Recent Queries</h5>
+          </div>
+          <ul id="recent-searches" class="list-group list-group-flush">
+        </ul>
+          <div class="d-flex">
+            <img class="mr-auto" x="50%" y="50%" src="styles/images/gray/recent_clicks_gray.svg" style="padding-left: 5px">
+            <h5 class="clicks mr-auto">Recently Viewed Content</h5>
+          </div>
+          <ul id="recent-clicks" class="list-group list-group-flush">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingTwo">
+        <h1 class="panel-title">
+          <a role="button" data-bs-toggle="collapse" data-bs-parent="#accordion" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <b>User Activity Timeline</b>
+          </a>
+        </h1>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="panel-body">
+          <ul id="all-user-history" class="list-group">
+          </ul>
+          <div class="d-grid gap-2 d-md-block">
+            <button id="show-more" class="btn btn-link" type="button">Show More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</body>
+</html>

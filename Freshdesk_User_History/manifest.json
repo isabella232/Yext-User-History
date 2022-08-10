@@ -1,0 +1,29 @@
+{
+  "platform-version": "2.2",
+  "product": {
+    "freshdesk": {
+      "location": {
+        "ticket_sidebar": {
+          "url": "index.html",
+          "icon": "styles/images/Yext_Seal_Black.svg"
+        }
+      },
+      "functions": {
+        "retrieveLogsData": {
+          "timeout": 20
+        }
+      }
+    }
+  },
+  "engines": {
+    "node": "14.19.3",
+    "fdk": "8.3.1"
+  },
+  "dependencies": {
+    "request": "2.72.0"
+  },
+  "whitelisted-domains": [
+    "https://api.yext.com",
+    "https://www.yext.com"
+  ]
+}

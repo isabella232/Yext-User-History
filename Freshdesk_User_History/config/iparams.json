@@ -1,0 +1,14 @@
+{
+    "logsApiKey": {
+      "display_name": "Logs API Key",
+      "description": "Please enter an API key with access to your account's Logs API",
+      "type": "text",
+      "secure": true,
+      "required": true,
+      "visible": true,
+      "default_value": "REPLACE_ME_LOGS_API_KEY",
+      "type_attributes": {
+        "product": "freshdesk"
+      }
+    }
+  }
