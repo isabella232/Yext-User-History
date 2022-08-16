@@ -15,6 +15,10 @@
       }
     }
   },
+  "domainWhitelist": [
+    "https://api.yext.com",
+    "https://www.yext.com"
+  ],
   "parameters": [{
     "name": "logsApiKey",
     "type": "text",
