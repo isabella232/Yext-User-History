@@ -16,8 +16,8 @@
     }
   },
   "domainWhitelist": [
-    "https://api.yext.com",
-    "https://www.yext.com"
+    "api.yext.com",
+    "www.yext.com"
   ],
   "parameters": [{
     "name": "logsApiKey",
